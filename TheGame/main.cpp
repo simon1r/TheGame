@@ -233,7 +233,7 @@ public:
         time += t;
         sf::Vector2f dis =  player.getPosition() + player.getSize()/2.f - getPosition() - getSize()/2.f;
         float distance = sqrt(dis.x*dis.x + dis.y * dis.y);
-        if(distance < targetDistance) activ = true;
+        if(distance < targetDistance + 200) activ = true;
         if(activ){
             tryMove((dis/distance*speed*t).x,0);
             tryMove(0,(dis/distance*speed*t).y);
@@ -348,19 +348,19 @@ int main() {
 
     //Victory point
     Chest chest(200,200,chestTex);
-    chest.setPosition(400,2300);
+    chest.setPosition(2600,1300);
 
 
 
     //Cannons
-    int cannonCount = 8;
+    int cannonCount = 7;
     Cannon cannons[cannonCount];
     Bullet cannonBullet(50,50,sf::Vector2f(0,-100),0.2,bulletTex);
     for(int i=0;i<cannonCount;i++) {
         Cannon c(210/3.0, 260/3.0, cannon, cannonBullet ,4,i);
-        c.setPosition(400 * i + 400, 300);
+        c.setPosition(400 * i + 400, 85);
         //from 0 to 3 rotates to right 90deg
-        c.rot(i%3);
+        c.rot(2);
         cannons[i] = c;
     }
 
@@ -369,18 +369,18 @@ int main() {
         for (int x = 0; x < 6; x++)
             enemyTex[y][x].loadFromFile("enemy.png", sf::IntRect( 512/8 * x, 256/4 * y, 512/8, 256/4));
 
-    for(int i =0;i<10;i++){
+    for(int i =0;i<9;i++){
         Enemy en(100,100,200,200,0.1,1);
-        en.setPosition(400 + i* 300,400);
+        en.setPosition(400 + i* 300,700);
         enemies[i] = en;
     }
     //Saws
-    int sawCount = 8;
+    int sawCount = 15;
     Saw saws[sawCount];
     for(int i=0;i<sawCount;i++) {
         Saw s(210/3.0, 260/3.0,sawTex,0.5,3.14,i);
-        s.start = sf::Vector2f(100*i,400);
-        s.dislocation = sf::Vector2f(0,400);
+        s.start = sf::Vector2f(200*i,500);
+        s.dislocation = sf::Vector2f(0,900);
         saws[i] = s;
     }
 
